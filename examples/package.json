@@ -1,0 +1,32 @@
+{
+  "name": "@levicape/loglayer-effect-example",
+  "version": "1.0.0",
+  "description": "Example for LoggingContext tag",
+  "scripts": {
+    "build": "tsc",
+    "lint": "prettier -w src/*"
+  },
+  "dependencies": {
+    "@aws-lambda-powertools/logger": "^2.21.0",
+    "@effect/platform": "^0.84.10",
+    "@effect/platform-node": "^0.85.15",
+    "@loglayer/plugin": "^2.1.0",
+    "@loglayer/transport-aws-lambda-powertools": "^3.1.0",
+    "@loglayer/transport-consola": "^2.1.0",
+    "@loglayer/transport-pino": "^2.2.0",
+    "@levicape/loglayer-effect": "latest",
+    "consola": "^3.4.2",
+    "effect": "^3.16.6",
+    "loglayer": "^6.4.2",
+    "pino": "^9.7.0",
+    "pino-pretty": "^13.0.0"
+  },
+  "peerDependencies": {},
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
+    "@types/node": "^24.0.1",
+    "@types/verror": "^1.10.11",
+    "prettier": "^3.5.3",
+    "typescript": "^5.5.3"
+  }
+}
