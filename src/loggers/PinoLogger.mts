@@ -7,13 +7,12 @@ import { serializeError } from "serialize-error";
 import {
   LoggingContext,
   type LoggingContextOptions,
+  LoggingPluginsAsyncStore,
   LogstreamPassthrough,
 } from "../LoggingContext.mjs";
-import {
-  $$_spanId_$$,
-  $$_traceId_$$,
-  LoggingPlugins,
-} from "./LoggingPlugins.mjs";
+
+import { $$_spanId_$$, $$_traceId_$$ } from "../LoggingPlugins.mjs";
+
 import { LoggingConfigMain } from "../env/LoggingConfig.mjs";
 
 const rootloglayer = pipe(
@@ -33,11 +32,9 @@ const rootloglayer = pipe(
           ),
         }),
         errorSerializer: serializeError,
-        plugins: LoggingPlugins,
+        plugins: LoggingPluginsAsyncStore.getStore(),
       }).withContext({
-        _$span: "root",
         rootId,
-        traceId: rootId,
       });
     }),
   ),
@@ -52,16 +49,11 @@ export const withPinoLogger = (props: LoggingContextOptions) =>
       let child = props.prefix
         ? logger.withPrefix(props.prefix)
         : logger.child();
-      const loglayer = child.withContext({
+
+      return child.withContext({
         ...props.context,
-        _$span: "logger",
         loggerId,
-        spanId: loggerId,
       });
-
-      loglayer.info(`logger span`);
-
-      return loglayer;
     }),
     stream: LogstreamPassthrough,
   });

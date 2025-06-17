@@ -73,9 +73,9 @@ export const withStructuredLogging = (options: LoggingContextOptions) => {
   return withPinoLogger(options);
 };
 
+export * from "./LoggingPlugins.mjs";
 export * from "./loggers/AwsPowertoolsLogger.mjs";
 export * from "./loggers/ConsolaLogger.mjs";
-export * from "./loggers/LoggingPlugins.mjs";
 export * from "./loggers/PinoLogger.mjs";
 export * from "./env/LoggingConfig.mjs";
 export * from "./env/LoggingConfigAws.mjs";
